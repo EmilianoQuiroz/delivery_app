@@ -10,9 +10,10 @@ class LoginPage extends StatelessWidget {
         height: 50,
         child: _textDontHaveAccount(),
       ),
-      body: Stack(//Para pocicionarl elementos uno encima del otro
+      body: Stack(//Para posicionar elementos uno encima del otro
         children: [
           _backgroundCover(context),
+          _boxForm(context),
           Column(//Para posicionar elementos uno abajo del otro
             children: [
               _imageCover(),
@@ -28,18 +29,104 @@ class LoginPage extends StatelessWidget {
   Widget _backgroundCover(BuildContext context){
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.45,
       color: Colors.green,
     );
   }
   // Titulo de la aplicacion
   Widget _textAppName(){
     return Text(
-      'Delivery App',
+      'DELIVERY FLUTTER',
       style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
         color: Colors.black
+      ),
+    );
+  }
+  // Box de Registro
+  Widget _boxForm(BuildContext context){
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.45,
+      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.32, left: 50, right: 50),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black54,
+            blurRadius: 15,
+            offset: Offset(0, 0.75)
+          )
+        ]
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _textYourInfo(),
+            _textFieldEmail(),
+            _textFieldPassword(),
+            _buttonLogin()
+          ],
+        ),
+      ),
+    );
+  }
+  // Inputs
+  Widget _textFieldEmail() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40),
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          hintText: 'Correo electronico',
+          prefixIcon: Icon(Icons.email)
+        ),
+      ),
+    );
+  }
+  Widget _textFieldPassword() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 40),
+      child: TextField(
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: InputDecoration(
+            hintText: 'Contraseña',
+            prefixIcon: Icon(Icons.lock)
+        ),
+      ),
+    );
+  }
+  // Texto de Ingresa los datos
+  Widget _textYourInfo(){
+    return Container(
+      margin: EdgeInsets.only(top: 40, bottom: 50),
+      child: Text(
+        'INGRESE LOS DATOS',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 16,
+
+        ),
+      ),
+    );
+  }
+  // Boton
+  Widget _buttonLogin() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 40 ),
+      child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(vertical: 15)
+          ),
+          child: Text(
+            'LOGIN',
+            style: TextStyle(
+              color: Colors.black
+            ),
+          )
       ),
     );
   }
