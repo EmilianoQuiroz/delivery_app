@@ -51,6 +51,7 @@ class LoginPage extends StatelessWidget {
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.32, left: 50, right: 50),
       decoration: BoxDecoration(
         color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black54,
