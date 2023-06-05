@@ -67,7 +67,7 @@ class RegisterPage extends StatelessWidget {
             _textYourInfo(),
             _textFieldEmail(),
             _textFieldName(),
-            _textFieldLastName(),
+            _textFieldLastname(),
             _textFieldPhone(),
             _textFieldPassword(),
             _textFieldConfirmPassword(),
@@ -81,11 +81,11 @@ class RegisterPage extends StatelessWidget {
   // Input de Email
   Widget _textFieldEmail() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 40),
+      margin: const  EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
         controller: con.emailController,
         keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             hintText: 'Correo electronico',
             prefixIcon: Icon(Icons.email)
         ),
@@ -109,11 +109,11 @@ class RegisterPage extends StatelessWidget {
   }
 
   // Input de Apellido
-  Widget _textFieldLastName() {
+  Widget _textFieldLastname() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
       child: TextField(
-        controller: con.lastNameController,
+        controller: con.lastnameController,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
             hintText: 'Apellido',
@@ -162,7 +162,7 @@ class RegisterPage extends StatelessWidget {
         controller: con.confirmPasswordController,
         keyboardType: TextInputType.text,
         obscureText: true,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             hintText: 'Confirmar contraseña',
             prefixIcon: Icon(Icons.lock_outline)
         ),
@@ -174,11 +174,11 @@ class RegisterPage extends StatelessWidget {
   Widget _imageUser() {
     return SafeArea(
       child: Container(
-        margin: EdgeInsets.only(top:25),
+        margin: const EdgeInsets.only(top:25),
         alignment: Alignment.topCenter,
         child: GestureDetector(
           onTap: () {},
-          child: CircleAvatar(
+          child: const CircleAvatar(
             backgroundImage: AssetImage('assets/img/user_profile.png'),
             radius: 60,
             backgroundColor: Colors.white,
