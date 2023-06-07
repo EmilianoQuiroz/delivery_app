@@ -15,7 +15,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -33,24 +32,20 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/register', page: () => RegisterPage())
       ],
       theme: ThemeData(
-        primaryColor: Colors.green,
-        colorScheme: ColorScheme(
-            primary: Colors.green,
-            secondary: Colors.greenAccent,
-            brightness: Brightness.light,
-            onBackground: Colors.grey,
-            onPrimary: Colors.grey,
-            surface: Colors.grey,
-            onSurface: Colors.grey,
-            error: Colors.grey,
-            onError: Colors.grey,
-            onSecondary: Colors.grey,
-            background: Colors.grey
-        )
-      ),
+          primaryColor: Colors.green,
+          colorScheme: const ColorScheme(
+              primary: Colors.green,
+              secondary: Colors.greenAccent,
+              brightness: Brightness.light,
+              onBackground: Colors.grey,
+              onPrimary: Colors.grey,
+              surface: Colors.grey,
+              onSurface: Colors.grey,
+              error: Colors.grey,
+              onError: Colors.grey,
+              onSecondary: Colors.grey,
+              background: Colors.grey)),
       navigatorKey: Get.key,
     );
   }
 }
-
-

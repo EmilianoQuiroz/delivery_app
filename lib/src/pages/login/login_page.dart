@@ -1,9 +1,8 @@
-import 'package:delivery_app/src/pages/login/login_controller.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:delivery_app/src/pages/login/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-
   LoginController con = Get.put(LoginController());
 
   @override
@@ -13,56 +12,48 @@ class LoginPage extends StatelessWidget {
         height: 50,
         child: _textDontHaveAccount(),
       ),
-      body: Stack(//Para posicionar elementos uno encima del otro
+      body: Stack(
+        // POSICIONAR ELEMENTOS UNO ENCIMA DEL OTRO
         children: [
           _backgroundCover(context),
           _boxForm(context),
-          Column(//Para posicionar elementos uno abajo del otro
-            children: [
-              _imageCover(),
-              _textAppName(),
-            ],
-          )
+          Column(
+            // POSICIONAR ELEMENTOS UNO DEBAJO DEL OTRO (VERTICAL)
+            children: [_imageCover(), _textAppName()],
+          ),
         ],
-      )
+      ),
     );
   }
 
-  // Fondo de la aplicacion
-  Widget _backgroundCover(BuildContext context){
+  Widget _backgroundCover(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.45,
+      height: MediaQuery.of(context).size.height * 0.42,
       color: Colors.green,
     );
   }
-  // Titulo de la aplicacion
-  Widget _textAppName(){
+
+  Widget _textAppName() {
     return Text(
       'DELIVERY FLUTTER',
       style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.black
-      ),
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
     );
   }
-  // Box de Registro
-  Widget _boxForm(BuildContext context){
+
+  Widget _boxForm(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.45,
-      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.32, left: 50, right: 50),
+      margin: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height * 0.35, left: 50, right: 50),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black54,
-            blurRadius: 15,
-            offset: Offset(0, 0.75)
-          )
-        ]
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black54, blurRadius: 16, offset: Offset(0, 0.75))
+          ]),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -75,7 +66,7 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-  // Inputs
+
   Widget _textFieldEmail() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
@@ -83,12 +74,11 @@ class LoginPage extends StatelessWidget {
         controller: con.emailController,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          hintText: 'Correo electronico',
-          prefixIcon: Icon(Icons.email)
-        ),
+            hintText: 'Correo electronico', prefixIcon: Icon(Icons.email)),
       ),
     );
   }
+
   Widget _textFieldPassword() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40),
@@ -97,78 +87,66 @@ class LoginPage extends StatelessWidget {
         keyboardType: TextInputType.text,
         obscureText: true,
         decoration: InputDecoration(
-            hintText: 'Contraseña',
-            prefixIcon: Icon(Icons.lock)
-        ),
+            hintText: 'Contraseña', prefixIcon: Icon(Icons.lock)),
       ),
     );
   }
-  // Texto de Ingresa los datos
-  Widget _textYourInfo(){
-    return Container(
-      margin: EdgeInsets.only(top: 40, bottom: 50),
-      child: Text(
-        'INGRESE LOS DATOS',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 16,
 
-        ),
-      ),
-    );
-  }
-  // Boton
   Widget _buttonLogin() {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 40 ),
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
       child: ElevatedButton(
           onPressed: () => con.login(),
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(vertical: 15)
-          ),
+              padding: EdgeInsets.symmetric(vertical: 15)),
           child: Text(
             'LOGIN',
-            style: TextStyle(
-              color: Colors.black
-            ),
-          )
+            style: TextStyle(color: Colors.black),
+          )),
+    );
+  }
+
+  Widget _textYourInfo() {
+    return Container(
+      margin: EdgeInsets.only(top: 40, bottom: 50),
+      child: Text(
+        'INGRESA TUS DATOS',
+        style: TextStyle(
+          color: Colors.black,
+        ),
       ),
     );
   }
-  // Textos de registro y crear cuenta
-  Widget _textDontHaveAccount(){
-    return Row(//Ubicar elementos uno al lado del otro (Horizontal)
+
+  Widget _textDontHaveAccount() {
+    return Row(
+      // UBICAR ELEMENTOS UNO AL LADO DEL OTRO (HORIZONTAL)
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           '¿No tenes cuenta?',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 17
-          ),
+          style: TextStyle(color: Colors.black, fontSize: 17),
         ),
         SizedBox(width: 7),
         GestureDetector(
           onTap: () => con.goToRegisterPage(),
           child: Text(
-              'Registrate aca',
+            'Registrate Aca',
             style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-                fontSize: 19
-            ),
+                color: Colors.green, fontWeight: FontWeight.bold, fontSize: 17),
           ),
-        )
+        ),
       ],
     );
   }
-  // Imagen del login
-  Widget _imageCover(){
+
+  // PRIVADO
+  Widget _imageCover() {
     return SafeArea(
       child: Container(
         margin: EdgeInsets.only(top: 20, bottom: 15),
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
         child: Image.asset(
           'assets/img/delivery.png',
           width: 130,
