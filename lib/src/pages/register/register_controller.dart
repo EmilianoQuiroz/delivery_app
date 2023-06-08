@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:delivery_app/src/models/user.dart';
 import 'package:delivery_app/src/providers/users_provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -12,6 +15,9 @@ class RegisterController extends GetxController {
   TextEditingController confirmPasswordController = TextEditingController();
 
   UsersProvider usersProvider = UsersProvider();
+
+  ImagePicker picker = ImagePicker();
+  File? imageFile;
 
   void register() async {
     String email = emailController.text.trim();
@@ -87,5 +93,52 @@ class RegisterController extends GetxController {
     }
 
     return true;
+  }
+// Funcionalidades de la camara y la galeri
+  Future selectImage(ImageSource imageSource) async {
+    XFile? image = await picker.pickImage(source: imageSource);
+    if(image != null) {
+      imageFile = File(image.path);
+      update();
+    }
+  }
+
+  void showAlertDialog(BuildContext context){
+    Widget galleryButton = ElevatedButton(
+        onPressed: (){
+          Get.back();
+          selectImage(ImageSource.gallery);
+        },
+        child: Text(
+            'Galeria',
+            style: TextStyle(
+              color: Colors.white
+            ),
+        )
+    );
+    Widget cameraButton = ElevatedButton(
+        onPressed: (){
+          Get.back();
+          selectImage(ImageSource.camera);
+        },
+        child: Text(
+            'Camera',
+            style: TextStyle(
+            color: Colors.white
+        ),
+        )
+    );
+
+    AlertDialog alertDialog =  AlertDialog(
+      title: Text('Seleccione una opcion'),
+      actions: [
+        galleryButton,
+        cameraButton
+      ],
+    );
+    
+    showDialog(context: context, builder: (BuildContext context) {
+      return alertDialog;
+    });
   }
 }
