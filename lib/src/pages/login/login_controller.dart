@@ -30,16 +30,21 @@ class LoginController extends GetxController {
         //Si el usuario se loguea exitosamente, entonces, lo guardamos en el Storage
         GetStorage().write('user', responseApi.data);
         //Y luego mandamos al usuario a la pantalla de inicio
-        goToHomePage();
+        //goToHomePage();
+        goToRolesPage();
       }
       else{
         Get.snackbar('Login Fallido', responseApi.message ?? '');
       }
     }
   }
-
+  // Ir a la pagina de inicio
   void goToHomePage() {
     Get.offNamedUntil('/home', (route) => false);
+  }
+  // Ir a la pagina de roles
+  void goToRolesPage() {
+    Get.offNamedUntil('/roles', (route) => false);
   }
 
   bool isValidForm(String email, String password) {
