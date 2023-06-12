@@ -1,13 +1,14 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sn_progress_dialog/progress_dialog.dart';
 import 'package:delivery_app/src/models/response_api.dart';
 import 'package:delivery_app/src/models/user.dart';
 import 'package:delivery_app/src/providers/users_provider.dart';
-import 'package:sn_progress_dialog/progress_dialog.dart';
 
 class RegisterController extends GetxController {
 
@@ -35,8 +36,10 @@ class RegisterController extends GetxController {
     print('Password ${password}');
 
     if (isValidForm(email, name, lastname, phone, password, confirmPassword)) {
+
       ProgressDialog progressDialog = ProgressDialog(context: context);
       progressDialog.show(max: 100, msg: 'Registrando datos...');
+
       User user = User(
         email: email,
         name: name,
@@ -47,6 +50,7 @@ class RegisterController extends GetxController {
 
       Stream stream = await usersProvider.createWithImage(user, imageFile!);
       stream.listen((res) {
+
         progressDialog.close();
         ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
 
@@ -63,7 +67,7 @@ class RegisterController extends GetxController {
   }
 
   void goToHomePage() {
-    Get.offNamedUntil('/home', (route) => false);
+    Get.offNamedUntil('/client/products/list', (route) => false);
   }
 
   bool isValidForm(
@@ -140,7 +144,7 @@ class RegisterController extends GetxController {
         child: Text(
           'GALERIA',
           style: TextStyle(
-              color: Colors.white
+              color: Colors.black
           ),
         )
     );
@@ -152,7 +156,7 @@ class RegisterController extends GetxController {
         child: Text(
           'CAMARA',
           style: TextStyle(
-              color: Colors.white
+              color: Colors.black
           ),
         )
     );

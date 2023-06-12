@@ -1,10 +1,15 @@
-import 'package:delivery_app/src/models/response_api.dart';
-import 'package:delivery_app/src/providers/users_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:delivery_app/src/models/response_api.dart';
+import 'package:delivery_app/src/models/user.dart';
+import 'package:delivery_app/src/providers/users_provider.dart';
 
 class LoginController extends GetxController {
+
+  User user = User.fromJson(GetStorage().read('user') ?? {});
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -24,30 +29,39 @@ class LoginController extends GetxController {
     if (isValidForm(email, password)) {
 
       ResponseApi responseApi = await usersProvider.login(email, password);
-      // Imprimimos la response por consola
+
       print('Response Api: ${responseApi.toJson()}');
-      if(responseApi.success == true){
-        //Si el usuario se loguea exitosamente, entonces, lo guardamos en el Storage
-        GetStorage().write('user', responseApi.data);
-        //Y luego mandamos al usuario a la pantalla de inicio
-        //goToHomePage();
-        goToRolesPage();
+
+      if (responseApi.success == true) {
+        GetStorage().write('user', responseApi.data); // DATOS DEL USUARIO EN SESION
+        User myUser = User.fromJson(GetStorage().read('user') ?? {});
+
+        print('Roles length: ${myUser.roles!.length}');
+
+        if (myUser.roles!.length > 1) {
+          goToRolesPage();
+        }
+        else { // SOLO UN ROL
+          goToClientProductPage();
+        }
+
       }
-      else{
-        Get.snackbar('Login Fallido', responseApi.message ?? '');
+      else {
+        Get.snackbar('Login fallido', responseApi.message ?? '');
       }
     }
   }
-  // Ir a la pagina de inicio
-  void goToHomePage() {
-    Get.offNamedUntil('/home', (route) => false);
+
+  void goToClientProductPage() {
+    Get.offNamedUntil('/client/products/list', (route) => false);
   }
-  // Ir a la pagina de roles
+
   void goToRolesPage() {
     Get.offNamedUntil('/roles', (route) => false);
   }
 
   bool isValidForm(String email, String password) {
+
     if (email.isEmpty) {
       Get.snackbar('Formulario no valido', 'Debes ingresar el email');
       return false;
@@ -65,4 +79,5 @@ class LoginController extends GetxController {
 
     return true;
   }
+
 }
