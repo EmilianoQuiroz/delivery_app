@@ -29,7 +29,7 @@ class ClientProductsListPage extends StatelessWidget {
   Widget _bottomBar() {
     return Obx(() => CustomAnimatedBottomBar(
       containerHeight: 70,
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.green,
       showElevation: true,
       itemCornerRadius: 24,
       curve: Curves.easeIn,
@@ -37,7 +37,7 @@ class ClientProductsListPage extends StatelessWidget {
       onItemSelected: (index) => con.changeTab(index),
       items: [
         BottomNavyBarItem(
-            icon: Icon(Icons.apps),
+            icon: Icon(Icons.home),
             title: Text('Home'),
             activeColor: Colors.white,
             inactiveColor: Colors.black
