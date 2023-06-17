@@ -1,3 +1,4 @@
+import 'package:delivery_app/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:delivery_app/src/pages/client/products/list/client_products_list_controller.dart';
@@ -20,7 +21,7 @@ class ClientProductsListPage extends StatelessWidget {
           children: [
             RestaurantOrdersListPage(),
             DeliveryOrdersListPage(),
-            RegisterPage()
+            ClientProfileInfoPage()
           ],
         ))
     );
