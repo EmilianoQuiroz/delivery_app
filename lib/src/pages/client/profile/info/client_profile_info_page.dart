@@ -30,7 +30,7 @@ class ClientProfileInfoPage extends StatelessWidget {
 
   Widget _boxForm(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.65,
+      height: MediaQuery.of(context).size.height * 0.4,
       margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.3, left: 50, right: 50),
       decoration: BoxDecoration(
@@ -44,6 +44,8 @@ class ClientProfileInfoPage extends StatelessWidget {
         child: Column(
           children: [
             _textName(),
+            _textEmail(),
+            _textPhone(),
             _buttonUpdate(context)
           ],
         ),
@@ -54,7 +56,7 @@ class ClientProfileInfoPage extends StatelessWidget {
   Widget _buttonUpdate(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       child: ElevatedButton(
           onPressed: () => {},
           style: ElevatedButton.styleFrom(
@@ -84,13 +86,26 @@ class ClientProfileInfoPage extends StatelessWidget {
 
   Widget _textName() {
     return Container(
-      margin: EdgeInsets.only(top: 40, bottom: 30),
-      child: Text(
-        '${con.user.name ?? ''} ${con.user.lastname ?? ''}',
-        style: TextStyle(
-          color: Colors.black,
-        ),
+      margin: EdgeInsets.only(top: 10),
+      child: ListTile(
+        leading: Icon(Icons.person),
+        title: Text('${con.user.name ?? ''} ${con.user.lastname ?? ''}'),
+        subtitle: Text('Nombre de usuario'),
       ),
+    );
+  }
+  Widget _textEmail() {
+    return ListTile(
+      leading: Icon(Icons.email),
+      title: Text(con.user.email ?? ''),
+      subtitle: Text('Email'),
+    );
+  }
+  Widget _textPhone() {
+    return ListTile(
+        leading: Icon(Icons.phone),
+        title: Text(con.user.phone ?? ''),
+        subtitle: Text('Celular')
     );
   }
 }
