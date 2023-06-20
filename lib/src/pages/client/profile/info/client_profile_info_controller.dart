@@ -4,4 +4,13 @@ import 'package:get_storage/get_storage.dart';
 
 class ClientProfileInfoController extends GetxController {
   User user = User.fromJson(GetStorage().read('user'));
+
+  void singOut(){
+    GetStorage().remove('user');
+    Get.offNamedUntil('/', (route) => false);// Elimina el historial de pantallas
+  }
+
+  void goToProfileUpdate(){
+    Get.toNamed('/client/profile/update');
+  }
 }

@@ -14,7 +14,8 @@ class ClientProfileInfoPage extends StatelessWidget {
         children: [
           _backgroundCover(context),
           _boxForm(context),
-          _imageUser(context)
+          _imageUser(context),
+          _buttonSingOut()
         ],
       ),
     );
@@ -52,13 +53,28 @@ class ClientProfileInfoPage extends StatelessWidget {
       ),
     );
   }
-
+  // Boton para volver atras
+  Widget _buttonSingOut() {
+    return SafeArea(
+        child: Container(
+          margin: EdgeInsets.only(right: 20),
+          alignment: Alignment.topRight,
+          child: IconButton(
+            onPressed: () => con.singOut(),
+            icon: Icon(
+              Icons.power_settings_new,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+        ));
+  }
   Widget _buttonUpdate(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       child: ElevatedButton(
-          onPressed: () => {},
+          onPressed: () => con.goToProfileUpdate(),
           style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 15)),
           child: Text(
