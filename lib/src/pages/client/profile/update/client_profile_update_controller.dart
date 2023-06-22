@@ -1,14 +1,19 @@
+import 'dart:convert';
 import 'dart:io';
-import 'package:delivery_app/src/models/user.dart';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sn_progress_dialog/sn_progress_dialog.dart';
+import 'package:sn_progress_dialog/progress_dialog.dart';
+import 'package:delivery_app/src/models/response_api.dart';
+import 'package:delivery_app/src/models/user.dart';
+import 'package:delivery_app/src/pages/client/profile/info/client_profile_info_controller.dart';
+import 'package:delivery_app/src/providers/users_provider.dart';
 
 class ClientProfileUpdateController extends GetxController {
 
-  User user = User.fromJson(GetStorage().read('user'));
+  User user = User.fromJson(GetStorage().read('user') ?? {});
 
   TextEditingController nameController = TextEditingController();
   TextEditingController lastnameController = TextEditingController();
@@ -17,49 +22,88 @@ class ClientProfileUpdateController extends GetxController {
   ImagePicker picker = ImagePicker();
   File? imageFile;
 
-  ClientProfileUpdateController(){
+  UsersProvider usersProvider = UsersProvider();
+
+  ClientProfileInfoController clientProfileInfoController = Get.find();
+
+  ClientProfileUpdateController() {
+    print('USER SESION: ${GetStorage().read('user')}');
     nameController.text = user.name ?? '';
     lastnameController.text = user.lastname ?? '';
     phoneController.text = user.phone ?? '';
   }
+
   void updateInfo(BuildContext context) async {
+
     String name = nameController.text;
     String lastname = lastnameController.text;
     String phone = phoneController.text;
 
-    if (isValidForm( name, lastname, phone)) {
+    if (isValidForm(name, lastname, phone)) {
 
       ProgressDialog progressDialog = ProgressDialog(context: context);
       progressDialog.show(max: 100, msg: 'Actualizando datos...');
 
       User myUser = User(
-        id: user.id,
-        name: name,
-        lastname: lastname,
-        phone: phone
+          id: user.id,
+          name: name,
+          lastname: lastname,
+          phone: phone,
+          sessionToken: user.sessionToken
       );
 
-      /*Stream stream = await usersProvider.createWithImage(user, imageFile!);
-      stream.listen((res) {
-
+      if (imageFile == null) {
+        ResponseApi responseApi = await usersProvider.update(myUser);
+        print('Response Api Update: ${responseApi.data}');
+        Get.snackbar('Proceso terminado', responseApi.message ?? '');
         progressDialog.close();
-        ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
-
         if (responseApi.success == true) {
-          GetStorage().write('user', responseApi.data); // DATOS DEL USUARIO EN SESION
-          goToHomePage();
+          GetStorage().write('user', responseApi.data);
+          clientProfileInfoController.user.value = User.fromJson(GetStorage().read('user') ?? {});
         }
-        else {
-          Get.snackbar('Registro fallido', responseApi.message ?? '');
-        }
+      }
+      else {
+        Stream stream = await usersProvider.updateWithImage(myUser, imageFile!);
+        stream.listen((res) {
 
-      });*/
+          progressDialog.close();
+          ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
+          Get.snackbar('Proceso terminado', responseApi.message ?? '');
+          if (responseApi.success == true) {
+            GetStorage().write('user', responseApi.data);
+            clientProfileInfoController.user.value = User.fromJson(GetStorage().read('user') ?? {});
+          }
+          else {
+            Get.snackbar('Registro fallido', responseApi.message ?? '');
+          }
+
+        });
+      }
+
+
+
+      // Stream stream = await usersProvider.createWithImage(user, imageFile!);
+      // stream.listen((res) {
+      //
+      //   progressDialog.close();
+      //   ResponseApi responseApi = ResponseApi.fromJson(json.decode(res));
+      //
+      //   if (responseApi.success == true) {
+      //     GetStorage().write('user', responseApi.data); // DATOS DEL USUARIO EN SESION
+      //     goToHomePage();
+      //   }
+      //   else {
+      //     Get.snackbar('Registro fallido', responseApi.message ?? '');
+      //   }
+      //
+      // });
     }
   }
+
   bool isValidForm(
       String name,
       String lastname,
-      String phone,
+      String phone
       ) {
 
     if (name.isEmpty) {
@@ -126,4 +170,5 @@ class ClientProfileUpdateController extends GetxController {
       return alertDialog;
     });
   }
+
 }

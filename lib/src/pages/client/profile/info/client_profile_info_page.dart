@@ -9,7 +9,7 @@ class ClientProfileInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Obx(() => Stack(
         // POSICIONAR ELEMENTOS UNO ENCIMA DEL OTRO
         children: [
           _backgroundCover(context),
@@ -17,7 +17,7 @@ class ClientProfileInfoPage extends StatelessWidget {
           _imageUser(context),
           _buttonSingOut()
         ],
-      ),
+      )),
     );
   }
 
@@ -90,8 +90,8 @@ class ClientProfileInfoPage extends StatelessWidget {
         margin: EdgeInsets.only(top: 25),
         alignment: Alignment.topCenter,
         child: CircleAvatar(
-            backgroundImage: con.user.image != null
-                ? NetworkImage(con.user.image!)
+            backgroundImage: con.user.value.image != null
+                ? NetworkImage(con.user.value.image!)
                 :AssetImage('assets/img/user_profile.png') as ImageProvider,
             radius: 60,
             backgroundColor: Colors.white,
@@ -105,7 +105,7 @@ class ClientProfileInfoPage extends StatelessWidget {
       margin: EdgeInsets.only(top: 10),
       child: ListTile(
         leading: Icon(Icons.person),
-        title: Text('${con.user.name ?? ''} ${con.user.lastname ?? ''}'),
+        title: Text('${con.user.value.name ?? ''} ${con.user.value.lastname ?? ''}'),
         subtitle: Text('Nombre de usuario'),
       ),
     );
@@ -113,14 +113,14 @@ class ClientProfileInfoPage extends StatelessWidget {
   Widget _textEmail() {
     return ListTile(
       leading: Icon(Icons.email),
-      title: Text(con.user.email ?? ''),
+      title: Text(con.user.value.email ?? ''),
       subtitle: Text('Email'),
     );
   }
   Widget _textPhone() {
     return ListTile(
         leading: Icon(Icons.phone),
-        title: Text(con.user.phone ?? ''),
+        title: Text(con.user.value.phone ?? ''),
         subtitle: Text('Celular')
     );
   }
