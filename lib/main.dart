@@ -1,4 +1,6 @@
 import 'package:delivery_app/src/models/user.dart';
+import 'package:delivery_app/src/pages/client/home/client_home_controller.dart';
+import 'package:delivery_app/src/pages/client/home/client_home_page.dart';
 import 'package:delivery_app/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:delivery_app/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:delivery_app/src/pages/client/profile/update/client_profile_update_page.dart';
@@ -39,7 +41,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: 'Delivery App',
       debugShowCheckedModeBanner: false,
-      initialRoute: userSession.id != null ? userSession.roles!.length > 1 ? '/roles' : '/client/products/list' : '/',
+      initialRoute: userSession.id != null ? userSession.roles!.length > 1 ? '/roles' : '/client/home' : '/',
       getPages: [
         GetPage(name: '/', page: () => LoginPage()),
         GetPage(name: '/register', page: () => RegisterPage()),
@@ -47,6 +49,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/roles', page: () => RolesPage()),
         GetPage(name: '/restaurant/orders/list', page: () => RestaurantOrdersListPage()),
         GetPage(name: '/delivery/orders/list', page: () => DeliveryOrdersListPage()),
+        GetPage(name: '/client/home/list', page: () => ClientHomePage()),
         GetPage(name: '/client/products/list', page: () => ClientProductsListPage()),
         GetPage(name: '/client/profile/info', page: () => ClientProfileInfoPage()),
         GetPage(name: '/client/profile/update', page: () => ClientProfileUpdatePage()),
