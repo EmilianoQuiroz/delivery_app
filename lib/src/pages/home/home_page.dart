@@ -11,11 +11,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          onPressed: () => con.singOut(),
-          child: const Text(
-              'Cerrar sesion',
+          onPressed: () => con.signOut(),
+          child: Text(
+            'Cerrar sesion',
             style: TextStyle(
-            color: Colors.white,
+                color: Colors.black
             ),
           ),
         ),

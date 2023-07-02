@@ -1,5 +1,4 @@
 import 'package:delivery_app/src/models/user.dart';
-import 'package:delivery_app/src/pages/client/home/client_home_controller.dart';
 import 'package:delivery_app/src/pages/client/home/client_home_page.dart';
 import 'package:delivery_app/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:delivery_app/src/pages/client/profile/info/client_profile_info_page.dart';
@@ -14,8 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-
 User userSession = User.fromJson(GetStorage().read('user') ?? {});
+
 void main() async{
   await GetStorage.init();
   runApp(const MyApp());
@@ -49,7 +48,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/roles', page: () => RolesPage()),
         GetPage(name: '/restaurant/orders/list', page: () => RestaurantOrdersListPage()),
         GetPage(name: '/delivery/orders/list', page: () => DeliveryOrdersListPage()),
-        GetPage(name: '/client/home/list', page: () => ClientHomePage()),
+        GetPage(name: '/client/home', page: () => ClientHomePage()),
         GetPage(name: '/client/products/list', page: () => ClientProductsListPage()),
         GetPage(name: '/client/profile/info', page: () => ClientProfileInfoPage()),
         GetPage(name: '/client/profile/update', page: () => ClientProfileUpdatePage()),

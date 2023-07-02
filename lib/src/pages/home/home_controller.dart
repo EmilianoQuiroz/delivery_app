@@ -1,15 +1,19 @@
-import 'package:delivery_app/src/models/user.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:delivery_app/src/models/user.dart';
 
 class HomeController extends GetxController {
+
   User user = User.fromJson(GetStorage().read('user') ?? {});
+
   HomeController() {
-    print('Usuario de sesion: ${user.toJson()}');
+    print('USUARIO DE SESION: ${user.toJson()}');
   }
 
-  void singOut(){
+  void signOut() {
     GetStorage().remove('user');
-    Get.offNamedUntil('/', (route) => false);// Elimina el historial de pantallas
+
+    Get.offNamedUntil('/', (route) => false); // ELIMINAR EL HISTORIAL DE PANTALLAS
   }
+
 }

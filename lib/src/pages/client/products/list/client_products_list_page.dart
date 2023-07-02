@@ -15,7 +15,7 @@ class ClientProductsListPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-        body: Center(child: Text('Productos de cliente')),
+        body: Center(child: Text('Productos cliente')),
     );
   }
 
