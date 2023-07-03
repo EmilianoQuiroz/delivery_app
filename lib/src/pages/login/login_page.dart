@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:delivery_app/src/pages/login/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
+
   LoginController con = Get.put(LoginController());
 
   @override
@@ -12,14 +13,15 @@ class LoginPage extends StatelessWidget {
         height: 50,
         child: _textDontHaveAccount(),
       ),
-      body: Stack(
-        // POSICIONAR ELEMENTOS UNO ENCIMA DEL OTRO
+      body: Stack( // POSICIONAR ELEMENTOS UNO ENCIMA DEL OTRO
         children: [
           _backgroundCover(context),
           _boxForm(context),
-          Column(
-            // POSICIONAR ELEMENTOS UNO DEBAJO DEL OTRO (VERTICAL)
-            children: [_imageCover(), _textAppName()],
+          Column( // POSICIONAR ELEMENTOS UNO DEBAJO DEL OTRO (VERTICAL)
+            children: [
+              _imageCover(),
+              _textAppName()
+            ],
           ),
         ],
       ),
@@ -38,22 +40,27 @@ class LoginPage extends StatelessWidget {
     return Text(
       'DELIVERY FLUTTER',
       style: TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black
+      ),
     );
   }
 
   Widget _boxForm(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.45,
-      margin: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height * 0.35, left: 50, right: 50),
+      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.35, left: 50, right: 50),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Colors.black54, blurRadius: 16, offset: Offset(0, 0.75))
-          ]),
+                color: Colors.black54,
+                blurRadius: 15,
+                offset: Offset(0, 0.75)
+            )
+          ]
+      ),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -74,7 +81,9 @@ class LoginPage extends StatelessWidget {
         controller: con.emailController,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-            hintText: 'Correo electronico', prefixIcon: Icon(Icons.email)),
+            hintText: 'Correo electronico',
+            prefixIcon: Icon(Icons.email)
+        ),
       ),
     );
   }
@@ -87,7 +96,9 @@ class LoginPage extends StatelessWidget {
         keyboardType: TextInputType.text,
         obscureText: true,
         decoration: InputDecoration(
-            hintText: 'Contraseña', prefixIcon: Icon(Icons.lock)),
+            hintText: 'Contraseña',
+            prefixIcon: Icon(Icons.lock)
+        ),
       ),
     );
   }
@@ -99,19 +110,23 @@ class LoginPage extends StatelessWidget {
       child: ElevatedButton(
           onPressed: () => con.login(),
           style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(vertical: 15)),
+              padding: EdgeInsets.symmetric(vertical: 15)
+          ),
           child: Text(
             'LOGIN',
-            style: TextStyle(color: Colors.black),
-          )),
+            style: TextStyle(
+                color: Colors.black
+            ),
+          )
+      ),
     );
   }
 
   Widget _textYourInfo() {
     return Container(
-      margin: EdgeInsets.only(top: 40, bottom: 50),
+      margin: EdgeInsets.only(top: 40, bottom: 45),
       child: Text(
-        'INGRESA TUS DATOS',
+        'INGRESA ESTA INFORMACION',
         style: TextStyle(
           color: Colors.black,
         ),
@@ -120,21 +135,26 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _textDontHaveAccount() {
-    return Row(
-      // UBICAR ELEMENTOS UNO AL LADO DEL OTRO (HORIZONTAL)
+    return Row( // UBICAR ELEMENTOS UNO AL LADO DEL OTRO (HORIZONTAL)
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          '¿No tenes cuenta?',
-          style: TextStyle(color: Colors.black, fontSize: 17),
+          '¿No tienes cuenta?',
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 17
+          ),
         ),
         SizedBox(width: 7),
         GestureDetector(
           onTap: () => con.goToRegisterPage(),
           child: Text(
-            'Registrate Aca',
+            'Registrate Aqui',
             style: TextStyle(
-                color: Colors.green, fontWeight: FontWeight.bold, fontSize: 17),
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+                fontSize: 17
+            ),
           ),
         ),
       ],
@@ -153,6 +173,6 @@ class LoginPage extends StatelessWidget {
           height: 130,
         ),
       ),
-    );
+    ) ;
   }
 }
