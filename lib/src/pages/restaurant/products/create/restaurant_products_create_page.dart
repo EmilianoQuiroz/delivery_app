@@ -27,7 +27,7 @@ class RestaurantProductsCreatePage extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.35,
-      color: Colors.amber,
+      color: Colors.green,
     );
   }
 
@@ -86,7 +86,7 @@ class RestaurantProductsCreatePage extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Icon(
             Icons.arrow_drop_down_circle,
-            color: Colors.amber,
+            color: Colors.green,
           ),
         ),
         elevation: 3,
