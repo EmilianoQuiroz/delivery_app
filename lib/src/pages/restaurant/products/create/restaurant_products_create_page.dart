@@ -36,6 +36,7 @@ class RestaurantProductsCreatePage extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.7,
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.18, left: 50, right: 50),
       decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
           color: Colors.white,
           boxShadow: <BoxShadow>[
             BoxShadow(
