@@ -1,3 +1,4 @@
+import 'package:delivery_app/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:delivery_app/src/pages/client/profile/info/client_profile_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class ClientHomePage extends StatelessWidget {
         body: Obx(() => IndexedStack(
           index: con.indexTab.value,
           children: [
-            RestaurantOrdersListPage(),
+            ClientProductsListPage(),
             DeliveryOrdersListPage(),
             ClientProfileInfoPage()
           ],
@@ -39,7 +40,7 @@ class ClientHomePage extends StatelessWidget {
       items: [
         BottomNavyBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text('Productos'),
             activeColor: Colors.white,
             inactiveColor: Colors.black
         ),
