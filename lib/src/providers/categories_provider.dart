@@ -1,3 +1,4 @@
+import 'package:delivery_app/src/models/product.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:delivery_app/src/environment/environment.dart';
@@ -10,6 +11,25 @@ class CategoriesProvider extends GetConnect {
   String url = Environment.API_URL + 'api/categories';
 
   User userSession = User.fromJson(GetStorage().read('user') ?? {});
+
+  Future<List<Product>> findByCategory(String idCategory) async {
+    Response response = await get(
+        '$url/findByCategory/$idCategory',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': userSession.sessionToken ?? ''
+        }
+    ); // ESPERAR HASTA QUE EL SERVIDOR NOS RETORNE LA RESPUESTA
+
+    if (response.statusCode == 401) {
+      Get.snackbar('Peticion denegada', 'Tu usuario no tiene permitido leer esta informacion');
+      return [];
+    }
+
+    List<Product> products = Product.fromJsonList(response.body);
+
+    return products;
+  }
 
   Future<List<Category>> getAll() async {
     Response response = await get(
