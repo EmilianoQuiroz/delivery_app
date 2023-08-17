@@ -8,6 +8,7 @@ import 'package:delivery_app/src/pages/register/register_page.dart';
 import 'package:delivery_app/src/pages/restaurant/orders/list/restaurant_orders_list_page.dart';
 import 'package:delivery_app/src/utils/custom_animated_bottom_bar.dart';
 import 'package:delivery_app/src/models/product.dart';
+import 'package:delivery_app/src/widgets/no_data_widget.dart';
 
 class ClientProductsListPage extends StatelessWidget {
 
@@ -49,11 +50,11 @@ class ClientProductsListPage extends StatelessWidget {
                       );
                     }
                     else {
-                      return NoDataWidget(text: 'No hay productos');
+                      return NoDataWidget(text: 'No hay productos en esta categoria');
                     }
                   }
                   else {
-                    return NoDataWidget(text: 'No hay productos');
+                    return NoDataWidget(text: 'No hay productos en esta categoria');
                   }
                 }
             );
