@@ -50,7 +50,7 @@ class ClientProductsDetailController extends GetxController {
 
         selectedProducts.add(product);
       }
-      else { // YA HA SIDOO AGREGADO EN STORAGE
+      else { // YA HA SIDO AGREGADO EN STORAGE
         selectedProducts[index].quantity = counter.value;
       }
 

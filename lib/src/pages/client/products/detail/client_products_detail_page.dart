@@ -82,7 +82,7 @@ class ClientProductsDetailPage extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    backgroundColor: Colors.white,
                     minimumSize: Size(45, 37),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
@@ -102,7 +102,7 @@ class ClientProductsDetailPage extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   minimumSize: Size(40, 37),
                 ),
               ),
@@ -116,7 +116,7 @@ class ClientProductsDetailPage extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    backgroundColor: Colors.white,
                     minimumSize: Size(45, 37),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
@@ -138,7 +138,7 @@ class ClientProductsDetailPage extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.amber,
+                  backgroundColor: Colors.amber,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),

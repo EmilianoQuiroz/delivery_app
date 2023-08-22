@@ -13,7 +13,7 @@ class NoDataWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/img/cero-items.png',
+            'assets/img/no_items.png',
             height: 150,
             width: 150,
           ),
