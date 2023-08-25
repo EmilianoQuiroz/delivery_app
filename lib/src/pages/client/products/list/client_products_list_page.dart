@@ -20,7 +20,7 @@ class ClientProductsListPage extends StatelessWidget {
       length: con.categories.length,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
+          preferredSize: Size.fromHeight(100),
           child: AppBar(
             bottom: TabBar(
               isScrollable: true,
@@ -62,6 +62,40 @@ class ClientProductsListPage extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  Widget _textFieldSearch(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        width: MediaQuery.of(context).size.width  * 0.75,
+        child: TextField(
+          onChanged: con.onChangeText,
+          decoration: InputDecoration(
+              hintText: 'Buscar producto',
+              suffixIcon: Icon(Icons.search, color: Colors.grey),
+              hintStyle: TextStyle(
+                  fontSize: 17,
+                  color: Colors.grey
+              ),
+              fillColor: Colors.white,
+              filled: true,
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(
+                      color: Colors.grey
+                  )
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(
+                      color: Colors.grey
+                  )
+              ),
+              contentPadding: EdgeInsets.all(15)
+          ),
+        ),
+      ),
+    );
   }
     Widget _cardProduct(BuildContext context, Product product) {
       return GestureDetector(
