@@ -20,8 +20,20 @@ class ClientProductsListPage extends StatelessWidget {
       length: con.categories.length,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100),
+          preferredSize: Size.fromHeight(110),
           child: AppBar(
+            flexibleSpace: Container(
+              margin: EdgeInsets.only(top: 15),
+              alignment: Alignment.topCenter,
+              child: Wrap(
+                direction: Axis.horizontal,
+
+                children: [
+                  _textFieldSearch(context),
+                  _iconShoppingBag()
+                ],
+              ),
+            ),
             bottom: TabBar(
               isScrollable: true,
               indicatorColor: Colors.green,
@@ -62,6 +74,53 @@ class ClientProductsListPage extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  Widget _iconShoppingBag() {
+    return SafeArea(
+      child: Container(
+        margin: EdgeInsets.only(left: 10),
+        child: con.items.value > 0
+            ? Stack(
+          children: [
+            IconButton(
+                onPressed: () => con.goToOrderCreate(),
+                icon: Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 33,
+                )
+            ),
+
+            Positioned(
+                right: 4,
+                top: 12,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  alignment: Alignment.center,
+                  child: Text(
+                    '${con.items.value}',
+                    style: TextStyle(
+                        fontSize: 12
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(30))
+                  ),
+                )
+            )
+          ],
+        )
+            : IconButton(
+            onPressed: () => con.goToOrderCreate(),
+            icon: Icon(
+              Icons.shopping_bag_outlined,
+              size: 30,
+            )
+        ),
+      ),
+    );
   }
 
   Widget _textFieldSearch(BuildContext context) {

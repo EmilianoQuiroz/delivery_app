@@ -36,10 +36,10 @@ class CustomAnimatedBottomBar extends StatelessWidget {
     final bgColor = backgroundColor ?? Theme.of(context).bottomAppBarColor;
 
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           if (showElevation)
             const BoxShadow(
