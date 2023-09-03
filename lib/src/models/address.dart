@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:udemy_flutter_delivery/src/models/Rol.dart';
+import 'package:delivery_app/src/models/Rol.dart';
 
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
